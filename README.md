@@ -56,7 +56,7 @@ event221/
 ### 1. Cloner et installer les dépendances
 
 ```bash
-git clone https://github.com/votre-repo/event221-api.git
+git clone https://github.com/fallou44/event221-api-latest.git
 cd event221-api
 npm install
 ```
@@ -70,9 +70,11 @@ cp .env.example .env
 Editer `.env` avec votre URL Neon :
 
 ```env
-DATABASE_URL="postgresql://user:password@ep-xxx.neon.tech/dbname?sslmode=require"
+DATABASE_URL="postgresql://user:password@host/dbname?sslmode=require"
 PORT=3000
 NODE_ENV=development
+JWT_SECRET="event221_super_secret_dakar_2026_serigne_seck_!@#"
+JWT_EXPIRES_IN="7d"
 ```
 
 ### 3. Générer le client Prisma et pousser le schéma
