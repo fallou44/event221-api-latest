@@ -1,4 +1,4 @@
-# 🎪 EVENT 221 — API de gestion du centre d'événements
+#  EVENT 221 — API de gestion du centre d'événements
 
 API REST Node.js/Express pour la gestion des espaces, prestataires, clients et réservations du centre **EVENT 221**.
 
@@ -51,7 +51,7 @@ event221/
 
 ---
 
-## ⚙️ Installation locale
+##  Installation locale
 
 ### 1. Cloner et installer les dépendances
 

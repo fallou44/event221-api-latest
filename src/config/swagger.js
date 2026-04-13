@@ -14,7 +14,7 @@ const options = {
     servers: [
       {
         url: process.env.NODE_ENV === 'production'
-          ? 'https://event221-api.onrender.com'
+          ? 'https://event221-api-latest.onrender.com'
           : `http://localhost:${process.env.PORT || 3000}`,
         description: process.env.NODE_ENV === 'production' ? 'Production (Render)' : 'Développement local',
       },
