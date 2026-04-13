@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+}
+
+enum TypeEspace {
+  SALLE_CONFERENCE
+  JARDIN
+  ROOFTOP
+  SALLE_FETE
+}
+
+enum TypePrestataire {
+  TRAITEUR
+  DJ
+  PHOTOGRAPHE
+  DECORATEUR
+}
+
+enum TypeClient {
+  PARTICULIER
+  ENTREPRISE
+}
+
+enum StatutReservation {
+  CONFIRMEE
+  ANNULEE
+  TERMINEE
+}
+
+model Espace {
+  id           Int               @id @default(autoincrement())
+  code         String            @unique
+  nom          String
+  capaciteMax  Int
+  type         TypeEspace
+  prixParJour  Float
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  reservations Reservation[]
+}
+
+model Prestataire {
+  id           Int               @id @default(autoincrement())
+  nom          String
+  type         TypePrestataire
+  email        String            @unique
+  telephone    String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  reservations Reservation[]
+}
+
+model Client {
+  id           Int               @id @default(autoincrement())
+  prenom       String
+  nom          String
+  email        String            @unique
+  telephone    String?
+  type         TypeClient
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  reservations Reservation[]
+}
+
+model Reservation {
+  id             Int               @id @default(autoincrement())
+  clientId       Int
+  espaceId       Int
+  prestataireId  Int?
+  dateEvenement  DateTime
+  nombreInvites  Int
+  montantTotal   Float
+  statut         StatutReservation @default(CONFIRMEE)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  client         Client            @relation(fields: [clientId], references: [id])
+  espace         Espace            @relation(fields: [espaceId], references: [id])
+  prestataire    Prestataire?      @relation(fields: [prestataireId], references: [id])
+}
+
+
+model User {
+  id           Int       @id @default(autoincrement())
+  nom          String
+  email        String    @unique
+  motDePasse   String
+  role         Role      @default(USER)
+  actif        Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
