@@ -1,3 +1,4 @@
+# Trigger build
 name: CI pour les pull et push dans main
 
 on:
