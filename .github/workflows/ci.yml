@@ -1,10 +1,10 @@
-name: CI pour les pull et push dans master
+name: CI pour les pull et push dans main
 
 on:
   push:
-    branches: ['master']
+    branches: ['main']
   pull_request:
-    branches: ['master']
+    branches: ['main']
 
 jobs:
   build:
